@@ -1,7 +1,6 @@
 {
-  "name": "dropload",
-  "repo": "component/dropload",
-  "description": "drag and drop uploads",
+  "name": "cdpload",
+  "repo": "ramitos/cdpload",
   "version": "0.2.1",
   "keywords": [
     "drag",
@@ -13,11 +12,13 @@
     "component/emitter": "*",
     "component/classes": "*",
     "component/upload": "*",
-    "component/events": "*"
+    "component/events": "*",
+    "component/domify": "*"
   },
   "development": {},
   "scripts": [
-    "index.js"
+    "index.js",
+    "template.js"
   ],
   "license": "MIT"
 }
