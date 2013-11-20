@@ -63,7 +63,7 @@ cdpload.prototype.onclick = function(){
 }
 
 cdpload.prototype.onchange = function(){
-  this.upload(this.files);
+  this.upload(this.input.files);
 }
 
 cdpload.prototype.upload = function(files){
