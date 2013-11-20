@@ -24,8 +24,6 @@ upload_handler.on('typeNotAllowed', function (file) {})
 upload_handler.on('maxSizeExceed', function (file) {})
 
 upload_handler.on('upload', function (upload) {
-  console.log('uploading %s', upload.file.name)
-
   upload.to('/upload', function (err, req) {})
   upload.on('progress', function (ev) {})
   upload.on('end', function (req) {})
