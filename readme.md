@@ -18,13 +18,9 @@ var upload_handler = cdpload(document.getElementById('el'), {
   accept: 'image/*', // also accepts ['image/*', 'video/*']
 })
 
-upload_handler.on('error', function (err) {
-  console.error(err.message)
-})
+upload_handler.on('error', function (err) {})
 
 upload_handler.on('upload', function (upload) {
-  console.log('uploading %s', upload.file.name)
-
   upload.to('/upload', function (err, req) {})
   upload.on('progress', function (ev) {})
   upload.on('end', function (req) {})
