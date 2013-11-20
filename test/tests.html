@@ -28,6 +28,7 @@
       });
 
       drop.on('upload', function(upload){
+        console.log(upload)
         console.log('uploading %s', upload.file.name);
         upload.to('/upload');
       });

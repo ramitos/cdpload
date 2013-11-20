@@ -27,7 +27,11 @@ var cdpload = module.exports = function (el, options) {
   if(type(options.accept) !== 'array')
     options.accept = []
 
+  if(!options.maxSize)
+    options.maxSize = Infinity
+
   this.ignored = {}
+  this.maxSize = options.maxSize
   this.multiple = options.multiple || true
   this.accept = options.accept.filter(function (accept) {
     return (type(accept) === 'string') && accept.match(/(image|video|audio|text|\*)\/(\*|.*?)/)
@@ -36,6 +40,9 @@ var cdpload = module.exports = function (el, options) {
   }).map(function (accept) {
     return {type: accept[0], format: accept[1]}
   })
+
+  if(!this.accept.length)
+    this.accept = [{type: '*', format: '*'}]
 
   this.el = el
   this.el.appendChild(domify(interpolate(template, this.multiple ? 'multiple' : '')))
@@ -102,7 +109,12 @@ cdpload.prototype.ondrop = function (ev) {
 }
 
 cdpload.prototype.filter = function (file) {
-  return this.accept.some(function (accept) {
+  if(file.size > this.maxSize) {
+    this.emit('maxSizeExceed', file)
+    return false
+  }
+
+  var accepted = this.accept.some(function (accept) {
     var mime = file.type.split('/')
     var format = mime[1]
     var type = mime[0]
@@ -113,6 +125,11 @@ cdpload.prototype.filter = function (file) {
     if(accept.format === format) return true
     return false
   })
+
+  if(!accepted)
+    this.emit('typeNotAllowed', file)
+
+  return accepted
 }
 
 cdpload.prototype.upload = function(file){

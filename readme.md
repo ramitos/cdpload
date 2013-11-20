@@ -14,13 +14,14 @@ component install ramitos/cdpload
 var cdpload = require('cdpload');
 
 var upload_handler = cdpload(document.getElementById('el'), {
-  multiple: false, // only accept one file
-  accept: 'image/*', // also accepts ['image/*', 'video/*']
+  multiple: false, // only accept one file. default: true
+  accept: 'image/*', // also accepts ['image/*', 'video/*']. default: '*/*'
+  maxSize: 90000 // default: Infinity
 })
 
-upload_handler.on('error', function (err) {
-  console.error(err.message)
-})
+upload_handler.on('error', function (err) {})
+upload_handler.on('typeNotAllowed', function (file) {})
+upload_handler.on('maxSizeExceed', function (file) {})
 
 upload_handler.on('upload', function (upload) {
   console.log('uploading %s', upload.file.name)
