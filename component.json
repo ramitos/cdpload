@@ -1,24 +1,31 @@
 {
   "name": "cdpload",
+  "version": "0.0.1",
+  "description": "uploads with 'click to upload' and 'drop to upload' support",
   "repo": "ramitos/cdpload",
-  "version": "0.2.1",
   "keywords": [
     "drag",
     "drop",
     "upload",
-    "file"
+    "file",
+    "click"
+  ],
+  "homepage": "https://github.com/ramitos/cdpload",
+  "license": "MIT",
+  "author": "Sérgio Ramos <mail@sergioramos.me> (http://sergioramos.me)",
+  "twitter": "@ramitos",
+  "main": "src/cdpload.js",
+  "scripts": [
+    "src/cdpload.js",
+    "src/template.js"
   ],
   "dependencies": {
     "component/emitter": "*",
     "component/classes": "*",
     "component/upload": "*",
     "component/events": "*",
-    "component/domify": "*"
-  },
-  "development": {},
-  "scripts": [
-    "index.js",
-    "template.js"
-  ],
-  "license": "MIT"
+    "component/domify": "*",
+    "component/type": "*",
+    "ramitos/interpolate": "*"
+  }
 }

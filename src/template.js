@@ -1,0 +1,1 @@
+module.exports = '<input type=\'file\' %s style=\'display:none\' class=\'cdpload\'>'
