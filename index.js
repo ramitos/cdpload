@@ -58,11 +58,11 @@ cdpload.prototype.ondrop = function(ev){
   this.emit('drop', ev)
 }
 
-cdpload.prototype.click = function(){
+cdpload.prototype.onclick = function(){
   this.input.click()
 }
 
-cdpload.prototype.change = function(){
+cdpload.prototype.onchange = function(){
   this.upload(this.files);
 }
 
