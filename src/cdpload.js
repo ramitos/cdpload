@@ -1,4 +1,3 @@
-
 /**
  * Module dependencies.
  */
@@ -38,7 +37,7 @@ var cdpload = module.exports = function (el, options) {
   }).map(function (accept) {
     return accept.match(/(image|video|audio|text|\*)\/(\*|.*?)/)
   }).map(function (accept) {
-    return {type: accept[0], format: accept[1]}
+    return {type: accept[1], format: accept[2]}
   })
 
   if(!this.accept.length)
