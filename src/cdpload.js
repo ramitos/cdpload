@@ -119,7 +119,7 @@ cdpload.prototype.filter = function (file) {
     var type = mime[0]
 
     if(accept.type === '*') return true
-    if(accept.type === type) return true
+    if(accept.type !== type) return false
     if(accept.format === '*') return true
     if(accept.format === format) return true
     return false
