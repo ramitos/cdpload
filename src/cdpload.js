@@ -132,5 +132,5 @@ cdpload.prototype.filter = function (file) {
 }
 
 cdpload.prototype.upload = function(file){
-  this.emit('upload', new Upload(file))
+  this.emit('upload', new Upload(file), this.el)
 }
