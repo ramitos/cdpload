@@ -8,6 +8,7 @@ var interpolate = require('interpolate'),
     Upload = require('upload'),
     events = require('events'),
     domify = require('domify'),
+    trigger = require('trigger-event'),
     type = require('type')
 
 var template = require('./template')
@@ -44,8 +45,8 @@ var cdpload = module.exports = function (el, options) {
     this.accept = [{type: '*', format: '*'}]
 
   this.el = el
-  this.el.appendChild(domify(interpolate(template, this.multiple ? 'multiple' : '')))
-  this.input = this.el.querySelector('.cdpload')
+  this.input = domify(interpolate(template, this.multiple ? 'multiple' : ''))
+  this.input = this.el.appendChild(this.input)
 
   this.classes = classes(el)
   this.events = events(el, this)
@@ -89,10 +90,11 @@ cdpload.prototype.onchange = function () {
 }
 
 cdpload.prototype.onclick = function (ev) {
+  if(classes(ev.target).has('cdpload')) return
   ev.stopPropagation()
   ev.preventDefault()
 
-  this.input.click()
+  trigger(this.input, 'click')
 }
 
 cdpload.prototype.ondrop = function (ev) {

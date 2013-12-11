@@ -1,1 +1,1 @@
-module.exports = '<input type=\'file\' %s style=\'display:none\' class=\'cdpload\'>'
+module.exports = '<input type=\'file\' %s style=\'position:fixed;top:-100px;\' class=\'cdpload\'>'
