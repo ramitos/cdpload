@@ -1,6 +1,6 @@
 {
   "name": "cdpload",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "uploads with 'click to upload' and 'drop to upload' support",
   "repo": "ramitos/cdpload",
   "keywords": [
