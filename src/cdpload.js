@@ -55,8 +55,10 @@ var cdpload = module.exports = function (el, options) {
   this.events.bind('dragenter')
   this.events.bind('dragleave')
   this.events.bind('dragover')
-  this.events.bind('click')
   this.events.bind('change .cdpload')
+
+  if(!options.provide_event)
+    this.events.bind('click')
 }
 
 Emitter(cdpload.prototype)
