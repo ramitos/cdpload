@@ -51,13 +51,13 @@ var cdpload = module.exports = function (el, options) {
   this.classes = classes(el)
   this.events = events(el, this)
 
-  this.events.bind('drop')
-  this.events.bind('dragenter')
-  this.events.bind('dragleave')
-  this.events.bind('dragover')
+  this.events.bind(interpolate('drop%s', options.class ? ' ' + options.class : ''))
+  this.events.bind(interpolate('dragenter%s', options.class ? ' .' + options.class : ''))
+  this.events.bind(interpolate('dragleave%s', options.class ? ' .' + options.class : ''))
+  this.events.bind(interpolate('dragover%s', options.class ? ' .' + options.class : ''))
   this.events.bind('change .cdpload')
 
-  if(!options.provide_event)
+  if(!options.provide_event || !options.class)
     this.events.bind('click')
 }
 
@@ -106,9 +106,12 @@ cdpload.prototype.ondrop = function (ev) {
   ev.preventDefault()
 
   this.classes.remove('over')
-  var files = this.multiple ? [ev.dataTransfer.files[0]] : ev.dataTransfer.files
-  Array.prototype.filter.call(files, this.filter, this).forEach(this.upload, this)
   this.emit('drop', ev)
+
+  var files = this.multiple ? [ev.dataTransfer.files[0]] : ev.dataTransfer.files
+  Array.prototype.filter.call(files, this.filter, this).forEach(function(file){
+    this.upload(file, ev.delegateTarget);
+  }, this);
 }
 
 cdpload.prototype.filter = function (file) {
@@ -135,6 +138,6 @@ cdpload.prototype.filter = function (file) {
   return accepted
 }
 
-cdpload.prototype.upload = function(file){
-  this.emit('upload', new Upload(file), this.el)
+cdpload.prototype.upload = function(file, el){
+  this.emit('upload', new Upload(file), el);
 }
