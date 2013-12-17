@@ -45,8 +45,10 @@ var cdpload = module.exports = function (el, options) {
     this.accept = [{type: '*', format: '*'}]
 
   this.el = el
-  this.input = domify(interpolate(template, this.multiple ? 'multiple' : ''))
-  this.input = this.el.appendChild(this.input)
+  if (!options.no_picker) {
+    this.input = domify(interpolate(template, this.multiple ? 'multiple' : ''))
+    this.input = this.el.appendChild(this.input)
+  }
 
   this.classes = classes(el)
   this.events = events(el, this)
@@ -55,9 +57,9 @@ var cdpload = module.exports = function (el, options) {
   this.events.bind(interpolate('dragenter%s', options.class ? ' .' + options.class : ''))
   this.events.bind(interpolate('dragleave%s', options.class ? ' .' + options.class : ''))
   this.events.bind(interpolate('dragover%s', options.class ? ' .' + options.class : ''))
-  this.events.bind('change .cdpload')
+  if (!options.no_picker) this.events.bind('change .cdpload')
 
-  if(!options.provide_event || !options.class)
+  if(!options.provide_event || !options.no_picker)
     this.events.bind('click')
 }
 
