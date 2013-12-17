@@ -59,7 +59,7 @@ var cdpload = module.exports = function (el, options) {
   this.events.bind(interpolate('dragover%s', options.class ? ' .' + options.class : ''))
   if (!options.no_picker) this.events.bind('change .cdpload')
 
-  if(!options.provide_event || !options.no_picker)
+  if(!options.provide_event && !options.no_picker)
     this.events.bind('click')
 }
 
