@@ -51,7 +51,7 @@ var cdpload = module.exports = function (el, options) {
   this.classes = classes(el)
   this.events = events(el, this)
 
-  this.events.bind(interpolate('drop%s', options.class ? ' ' + options.class : ''))
+  this.events.bind(interpolate('drop%s', options.class ? ' .' + options.class : ''))
   this.events.bind(interpolate('dragenter%s', options.class ? ' .' + options.class : ''))
   this.events.bind(interpolate('dragleave%s', options.class ? ' .' + options.class : ''))
   this.events.bind(interpolate('dragover%s', options.class ? ' .' + options.class : ''))
