@@ -32,7 +32,7 @@ var cdpload = module.exports = function (el, options) {
 
   this.ignored = {}
   this.maxSize = options.maxSize
-  this.multiple = options.multiple || true
+  this.multiple = !!options.multiple
   this.accept = options.accept.filter(function (accept) {
     return (type(accept) === 'string') && accept.match(/(image|video|audio|text|\*)\/(\*|.*?)/)
   }).map(function (accept) {
