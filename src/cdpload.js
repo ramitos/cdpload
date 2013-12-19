@@ -90,7 +90,7 @@ cdpload.prototype.ondragleave = function () {
 }
 
 cdpload.prototype.onchange = function () {
-  this.upload(this.input.files);
+  Array.prototype.forEach.call(this.input.files, this.upload, this);
 }
 
 cdpload.prototype.onclick = function (ev) {
@@ -141,5 +141,6 @@ cdpload.prototype.filter = function (file) {
 }
 
 cdpload.prototype.upload = function(file, el){
+  if (!el) el = this.el;
   this.emit('upload', new Upload(file), el);
 }
