@@ -1,3 +1,5 @@
+![deprecated](https://img.shields.io/badge/status-deprecated-red.svg?style=plastic)
+
 # cdpload
 
 uploads with **click to upload** and **drop to upload** support
